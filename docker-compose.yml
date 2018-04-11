@@ -1,10 +1,11 @@
-version: '3'
+version: '3.1'
 
 services:
    db:
      image: mysql:5.7
      volumes:
-       - db_data:/var/lib/mysql
+       - db-data:/var/lib/mysql
+       - ./db-backup:/backup
      ports:
        - "3306:3306"
      restart: always
@@ -21,6 +22,7 @@ services:
      volumes:
        - ./wp-content:/var/www/html/wp-content
        - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+       - wpsrc:/usr/src/wordpress
      ports:
        - "8000:80"
      restart: always
@@ -29,5 +31,13 @@ services:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: ${DB_USER}
        WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+
+   wordpress-cli:
+      depends_on:
+        - wordpress
+      build: ./docker-files/wp-cli
+      volumes:
+        - wpsrc:/wordpress 
 volumes:
-   db_data:
+   db-data:
+   wpsrc:
