@@ -71,10 +71,14 @@ RUN set -ex; \
 	\
 	wp --allow-root --version
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY ./docker-entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Removes the www-data from original dockerfile
+# to do changes in wp-config.php. 
+# Requires the same user of wordpress image
+# ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
 # USER www-data
-CMD ["wp", "shell"]
+# CMD ["wp", "shell", "--allow-root", "--path=/wordpress"]

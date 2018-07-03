@@ -8,10 +8,21 @@ services:
        - ./db-backup:/backup
      ports:
        - "3306:3306"
-     restart: always
+     restart: "no"
      environment:
        MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
        MYSQL_DATABASE: ${DB_NAME}
+       MYSQL_USER: ${DB_USER}
+       MYSQL_PASSWORD: ${DB_PASSWORD}
+
+   phpmyadmin:
+     image: phpmyadmin/phpmyadmin
+     ports:
+       - "8080:80"
+     restart: "no"
+     environment:
+       PMA_HOST: db
+       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
        MYSQL_USER: ${DB_USER}
        MYSQL_PASSWORD: ${DB_PASSWORD}
 
@@ -22,10 +33,11 @@ services:
      volumes:
        - ./wp-content:/var/www/html/wp-content
        - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-       - wpsrc:/usr/src/wordpress
+       - ./wp-src:/var/www/html
+       - wp-src:/usr/src/wordpress
      ports:
        - "8000:80"
-     restart: always
+     restart: "no"
      environment:
        WP_ENV: ${WP_ENV}
        WORDPRESS_DB_HOST: db:3306
@@ -37,7 +49,7 @@ services:
         - wordpress
       build: ./docker-files/wp-cli
       volumes:
-        - wpsrc:/wordpress 
+        - wp-src:/wordpress 
 volumes:
    db-data:
-   wpsrc:
+   wp-src:
