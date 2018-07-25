@@ -33,3 +33,5 @@ db-backup/*.sql
 db-backup/*.tar.gz
 db-backup/*.zip
 db-backup/*.rar
+
+/vendor/

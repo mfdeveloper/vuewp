@@ -27,9 +27,9 @@ services:
        MYSQL_PASSWORD: ${DB_PASSWORD}
 
    wordpress:
+     image: wordpress:latest
      depends_on:
        - db
-     image: wordpress:latest
      volumes:
        - ./wp-content:/var/www/html/wp-content
        - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
@@ -39,17 +39,27 @@ services:
        - "8000:80"
      restart: "no"
      environment:
+       WORDPRESS_VERSION: 4.9.7
        WP_ENV: ${WP_ENV}
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: ${DB_USER}
        WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
 
    wordpress-cli:
-      depends_on:
-        - wordpress
-      build: ./docker-files/wp-cli
-      volumes:
-        - wp-src:/wordpress 
+     build: ./docker-files/wp-cli
+     depends_on:
+       - wordpress
+     volumes:
+       - wp-src:/wordpress
+
+   composer:
+     image: composer:latest
+     depends_on:
+       - wordpress
+     volumes:
+       - .:/app
+       - $COMPOSER_HOME:/tmp
+      
 volumes:
    db-data:
    wp-src:
