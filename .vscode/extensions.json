@@ -5,7 +5,7 @@
 		// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
 		"mikestead.dotenv",
 		"peterjausovec.vscode-docker",
-		"bmewburn.vscode-intelephense-client",
+		"felixfbecker.php-intellisense",
 		"felixfbecker.php-debug",
 		"tungvn.wordpress-snippet"
 	]

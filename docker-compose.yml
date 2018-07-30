@@ -27,15 +27,15 @@ services:
        MYSQL_PASSWORD: ${DB_PASSWORD}
 
    wordpress:
-    #  image: wordpress:latest
      build: ./docker-files/wordpress
      depends_on:
        - db
      volumes:
-       - ./wp-content:/var/www/html/wp-content
        - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
        - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+       - ./wp-content:/var/www/html/wp-content
        - ./wp-src:/var/www/html
+       - wp-code:/var/www/html
        - wp-src:/usr/src/wordpress
      ports:
        - "8000:80"
@@ -49,12 +49,13 @@ services:
        XDEBUG_VERSION: 2.6.0
        XDEBUG_CONFIG: remote_host=172.17.0.1 #docker network ip.
 
-   wordpress-cli:
-     build: ./docker-files/wp-cli
+   wordpress-tools:
+     build: ./docker-files/wp-tools
      depends_on:
        - wordpress
      volumes:
-       - wp-src:/wordpress
+       - wp-code:/var/www/html
+       - ./wp-content:/var/www/html/wp-content
 
    composer:
      image: composer:latest
@@ -67,3 +68,4 @@ services:
 volumes:
    db-data:
    wp-src:
+   wp-code:
