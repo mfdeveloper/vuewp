@@ -7,6 +7,7 @@
 		"peterjausovec.vscode-docker",
 		"felixfbecker.php-intellisense",
 		"felixfbecker.php-debug",
-		"tungvn.wordpress-snippet"
+		"tungvn.wordpress-snippet",
+		"mrorz.language-gettext"
 	]
 }
