@@ -1,0 +1,8 @@
+#!/bin/sh
+
+COMMAND=`basename "$0"`
+docker-compose run \
+    wordpress-tools \
+    $COMMAND --allow-root "$@"
+
+exit $?

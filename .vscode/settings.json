@@ -1,6 +1,8 @@
 {
     "php.suggest.basic": false,
+    "php.executablePath": "./docker-aliases/php",
     "phpcs.standard": "WordPress",
+    "phpcs.executablePath": "./docker-aliases/phpcs",
     "phpcs.pathMappings": {
         "/var/www/html/wp-content": "${workspaceRoot}/wp-content",
         "/var/www/html/wp-includes": "${workspaceRoot}/wp-src/wp-includes",
