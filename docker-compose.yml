@@ -55,6 +55,9 @@ services:
      volumes:
        - wp-code:/var/www/html
        - ./wp-content:/var/www/html/wp-content
+       - .:/app
+     env_file: 
+       - ./.env
 
    composer:
      image: composer:latest

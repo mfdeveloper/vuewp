@@ -30,5 +30,17 @@
         "wpackagist-plugin/woocommerce-parcelas":"1.2.9.1",
         "wpackagist-plugin/woo-parcelas-com-e-sem-juros":"1.4",
         "wpackagist-plugin/yith-pre-order-for-woocommerce":"*"
+    },
+    "autoload": {
+        "psr-4": {
+            "WpAutomation\\": "scripts/WpAutomation"
+        }
+    },
+    "scripts": {
+        "installWpTests": "WpAutomation\\Tests::install",
+        "test": [
+            "cd ./wp-content/plugins/wordpress-plugin-boilerplate/",
+            "phpunit ./tests"
+        ]
     }
 }

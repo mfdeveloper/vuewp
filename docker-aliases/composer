@@ -2,6 +2,8 @@
 
 COMMAND=`basename "$0"`
 docker-compose run \
+    -u root \
+    -w /app \
     wordpress-tools \
     $COMMAND "$@"
 
