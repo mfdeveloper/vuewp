@@ -1,5 +1,4 @@
 #!/bin/sh
-
 tty=
 tty -s && tty=--tty
 docker run \

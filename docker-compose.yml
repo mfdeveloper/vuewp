@@ -49,24 +49,17 @@ services:
        XDEBUG_VERSION: 2.6.0
 
    wordpress-tools:
-     build: ./docker-files/wp-tools
+     image: mfdeveloper/wordpress-tools
      depends_on:
        - wordpress
      volumes:
        - wp-code:/var/www/html
        - ./wp-content:/var/www/html/wp-content
        - .:/app
+       - /tmp:/tmp
      env_file: 
        - ./.env
-
-   composer:
-     image: composer:latest
-     depends_on:
-       - wordpress
-     volumes:
-       - .:/app
-       - $COMPOSER_HOME:/tmp
-      
+       
 volumes:
    db-data:
    wp-src:
