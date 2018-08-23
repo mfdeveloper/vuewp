@@ -39,8 +39,7 @@
     "scripts": {
         "addTestFiles": "wp config set DB_HOST 0.0.0.0:3306 && wp scaffold plugin-tests wordpress-plugin-boilerplate && wp config set DB_HOST db:3306",
         "installWpTests": "WpAutomation\\Tests::install",
-        "test": [
-            "phpunit --configuration ./wp-content/plugins/wordpress-plugin-boilerplate/phpunit.xml.dist"
-        ]
+        "test": "phpunit --configuration ./wp-content/plugins/wordpress-plugin-boilerplate/phpunit.xml.dist"
+        
     }
 }
