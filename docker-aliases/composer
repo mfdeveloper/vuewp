@@ -4,14 +4,15 @@ COMMAND=`basename "$0"`
 docker run \
     --rm \
     -it \
-    --env-file "$PWD/.env" \
+    --env-file ./.env \
     --network=host \
-    -v "$HOME":"$HOME":ro \
     -v "$PWD/wp-src":"/var/www/html" \
     -v "$PWD/wp-content":"/var/www/html/wp-content" \
     -v /tmp:/tmp \
-    -u $(id -u) \
-    -w "$PWD" \
+    -v $PWD:/app \
+    -v "$HOME/.composer":"$HOME/.composer" \
+    -u $(id -u):$(id -g) \
+    -w /app \
     mfdeveloper/wordpress-tools:latest \
     $COMMAND "$@"
 

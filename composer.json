@@ -18,7 +18,7 @@
     "minimum-stability": "beta",
     "require": {
         "wpackagist-theme/storefront":"*",
-        "wpackagist-plugin/jetpack":"*",
+        "wpackagist-plugin/jetpack":"6.3.2",
         "wpackagist-plugin/akismet":"4.0.8",
         "wpackagist-plugin/admin-custom-login":"*",
         "wpackagist-plugin/custom-login":"*",
@@ -29,7 +29,9 @@
         "wpackagist-plugin/woocommerce-gateway-paypal-express-checkout":"*",
         "wpackagist-plugin/woocommerce-parcelas":"1.2.9.1",
         "wpackagist-plugin/woo-parcelas-com-e-sem-juros":"1.4",
-        "wpackagist-plugin/yith-pre-order-for-woocommerce":"*"
+        "wpackagist-plugin/yith-pre-order-for-woocommerce":"*",
+        "wp-phpunit/wp-phpunit":"4.9.8",
+        "league/climate": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +41,6 @@
     "scripts": {
         "addTestFiles": "wp config set DB_HOST 0.0.0.0:3306 && wp scaffold plugin-tests wordpress-plugin-boilerplate && wp config set DB_HOST db:3306",
         "installWpTests": "WpAutomation\\Tests::install",
-        "test": "phpunit --configuration ./wp-content/plugins/wordpress-plugin-boilerplate/phpunit.xml.dist"
-        
+        "test": "WpAutomation\\Tests::run"
     }
 }
