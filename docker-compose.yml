@@ -27,13 +27,12 @@ services:
        MYSQL_PASSWORD: ${DB_PASSWORD}
 
    wordpress:
-     build: ./docker-files/wordpress
+     image: mfdeveloper/wordpress-xdebug
      depends_on:
        - db
      volumes:
        - wp-code:/var/www/html
        - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
        - ./wp-content:/var/www/html/wp-content
        - ./wp-src:/var/www/html
        - wp-src:/usr/src/wordpress
